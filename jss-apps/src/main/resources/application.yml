@@ -1,0 +1,88 @@
+server:
+    compression:
+        enabled: true
+    port: 8080
+
+spring:
+    datasource:
+        url: jdbc:postgresql://localhost:5432/db_jss
+        username: postgres
+        password: 123456
+        driver-class-name: org.postgresql.Driver
+
+        platform: postgres
+        hikari:
+            connection-timeout: 20000
+            maximum-pool-size: 5
+
+    profiles:
+        active: local
+    #    jackson:
+    #        serialization:
+    #            WRITE_DATES_AS_TIMESTAMPS: false
+    #        time-zone: UTC
+
+    jpa:
+        database: postgresql
+        properties:
+            hibernate:
+#                globally_quoted_identifiers: true
+                dialect: org.hibernate.dialect.PostgreSQLDialect
+#                current_session_context_class: thread
+                format_sql: true
+                temp:
+                    use_jdbc_metadata_defaults: false
+#                jdbc:
+#                    lob:
+#                        non_contextual_creation: true
+#                naming:
+#                    implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyJpaCompliantImpl
+        database-platform: org.hibernate.dialect.PostgreSQL94Dialect
+        show-sql: true
+    ## MULTIPART (MultipartProperties)
+    # Enable multipart uploads
+    servlet:
+        multipart:
+            enabled: true
+            file-size-threshold: 2KB
+            max-file-size: 200MB
+            max-request-size: 215MB
+#apps:
+#    filePathProperties:
+#        uploadedFile: /home/var/files/uploaded
+#        uploadedFilePath: C:/audit
+
+#auth:
+#    #   in minutes
+#    jwtExpiration: 1000
+#    jwtSecret: JWTSuperSecretKey
+#
+#    otpExpiration: 5
+#    passwordExpiration : 129600 # 3 months
+#
+#connector:
+#    OtpUrl: file:C:/BNI/sms bankin wsdl/SB_SMSBanking_SMSSender_WSExport.wsdl
+#
+#    ##  OTP PROPERTIES
+#    OTPProperties:
+#        smsProviderId: BNI STARTER
+#        transactionType: DEV
+#        responseType: OK
+#        method: OTP
+#
+#    ## MAILING PROPERTIES
+#    EmailProperties:
+#        key: 1234BNI46ABCDBNI46981234
+#        from: otfdev46@gmail.com
+#        host: autodiscover.bni.co.id
+#        activationSubject: BNI Starter Activation
+#        forgotPasswordSubject: BNI Starter Forgot Password
+#        blockAccountSubject: BNI Starter Block Account
+
+logging:
+    level:
+        org:
+            hibernate:
+                SQL: DEBUG
+
+

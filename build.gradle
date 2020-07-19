@@ -1,37 +1,46 @@
 plugins {
-	id 'org.springframework.boot' version '2.3.1.RELEASE'
 	id 'io.spring.dependency-management' version '1.0.9.RELEASE'
 	id 'java'
 }
 
-group = 'co.id.jss'
-version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '1.8'
+// Configuration for both parent and sub project
+allprojects {
 
-configurations {
-	compileOnly {
-		extendsFrom annotationProcessor
+	// Library repository ordering request:
+	repositories {
+
+		// Maven Public Repo
+		mavenCentral()
+
+		// Jasper Report Dependencies Repo
+		maven {
+			url 'http://jaspersoft.artifactoryonline.com/jaspersoft/third-party-ce-artifacts/'
+		}
+
 	}
 }
 
-repositories {
-	mavenCentral()
-}
+// Configuration for sub project only (exclude parent)
+subprojects {
 
-dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-data-elasticsearch'
-	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-	implementation 'org.springframework.boot:spring-boot-starter-security'
-	implementation 'org.springframework.boot:spring-boot-starter-web'
-	compileOnly 'org.projectlombok:lombok'
-	runtimeOnly 'org.postgresql:postgresql'
-	annotationProcessor 'org.projectlombok:lombok'
-	testImplementation('org.springframework.boot:spring-boot-starter-test') {
-		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+	// Metadata
+	group = 'co.id.jss.jssrestapi'
+	version = '1.0.0-RELEASE'
+
+	// Apply plugin for all of sub project
+	apply plugin: 'java'
+	apply plugin: 'io.spring.dependency-management'
+
+	// The magic of spring boot! autodetect version for spring boot library
+	dependencyManagement {
+		imports {
+			mavenBom('org.springframework.boot:spring-boot-dependencies:2.3.1.RELEASE')
+		}
 	}
-	testImplementation 'org.springframework.security:spring-security-test'
-}
 
-test {
-	useJUnitPlatform()
+	// it requires 'java' plugin, in order to compile java source in this sub projects
+	compileJava {
+		sourceCompatibility = 1.8
+		targetCompatibility = 1.8
+	}
 }
