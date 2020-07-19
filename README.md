@@ -1,2 +1,2 @@
-# AwesomeByte Repository
-AwesomeByte Repository
+# AwesomeByte REST API
+AwesomeByte REST API
