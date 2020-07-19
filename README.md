@@ -1,2 +1,2 @@
-# AwesomeByte REST API
-AwesomeByte REST API
+# JSS REST API
+JSS REST API
