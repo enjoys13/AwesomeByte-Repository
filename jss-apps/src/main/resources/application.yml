@@ -10,7 +10,6 @@ spring:
         password: 123456
         driver-class-name: org.postgresql.Driver
 
-        platform: postgres
         hikari:
             connection-timeout: 20000
             maximum-pool-size: 5
@@ -47,10 +46,14 @@ spring:
             file-size-threshold: 2KB
             max-file-size: 200MB
             max-request-size: 215MB
-#apps:
-#    filePathProperties:
-#        uploadedFile: /home/var/files/uploaded
-#        uploadedFilePath: C:/audit
+    sql:
+        init:
+            platform: postgres
+apps:
+    version: 1.0.0-RELEASE
+    filePathProperties:
+        uploadedFileServer: /home/var/files/uploaded
+        uploadedFileLocal: C:/upload
 
 #auth:
 #    #   in minutes
