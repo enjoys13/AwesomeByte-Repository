@@ -1,0 +1,22 @@
+
+dependencies {
+
+    // Another Sub Project
+    implementation project(':jss-auth')
+    implementation project(':jss-common')
+
+    // Spring Boot
+    // These are using the magic of 'io.spring.dependency-management' plugin. You don't need specify the version
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.data:spring-data-commons'
+    implementation 'org.springframework.boot:spring-boot-starter-cache'
+
+    // 3rd Party - Swagger
+    implementation 'io.springfox:springfox-swagger2:2.6.1'
+    implementation 'io.springfox:springfox-swagger-ui:2.6.1'
+
+    // 3rd Party - Etc.
+    implementation 'org.projectlombok:lombok'
+
+}

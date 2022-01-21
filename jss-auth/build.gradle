@@ -1,7 +1,7 @@
 dependencies {
 
     // Another Sub Project
-    //implementation project(':jss-common')
+    implementation project(':jss-common')
 
     // Spring Boot
     // These are using the magic of 'io.spring.dependency-management' plugin. You don't need specify the version
@@ -19,4 +19,5 @@ dependencies {
 
     // 3rd Party - Etc.
     annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+
 }

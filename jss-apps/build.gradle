@@ -1,26 +1,51 @@
 plugins {
-    id 'org.springframework.boot' version '2.6.2'
+    id 'org.springframework.boot' version '2.2.4.RELEASE'
 //    id 'war'
 }
 
-configurations {
-    compileOnly {
-        extendsFrom annotationProcessor
-    }
-}
-
 dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter-data-elasticsearch'
+    // Database
+    runtimeOnly 'org.postgresql:postgresql'
+
+    // Another Sub Project
+    implementation project(':jss-config')
+    implementation project(':jss-auth')
+    implementation project(':jss-common')
+
+    // Spring Boot
+    // These are using the magic of 'io.spring.dependency-management' plugin. You don't need specify the version
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation 'org.springframework.boot:spring-boot-starter-web'
-    compileOnly 'org.projectlombok:lombok'
-    runtimeOnly 'org.postgresql:postgresql'
-    annotationProcessor 'org.projectlombok:lombok'
+    implementation 'org.springframework.boot:spring-boot-starter-cache'
+
+//    providedRuntime('org.springframework.boot:spring-boot-starter-tomcat')
+
     testImplementation('org.springframework.boot:spring-boot-starter-test') {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }
-    testImplementation 'org.springframework.security:spring-security-test'
+
+    // 3rd Party - Query DSL
+    implementation 'com.querydsl:querydsl-core:4.2.2'
+    implementation 'com.querydsl:querydsl-jpa:4.2.2'
+
+    annotationProcessor 'com.querydsl:querydsl-apt:4.2.2:jpa'
+    annotationProcessor 'org.hibernate.javax.persistence:hibernate-jpa-2.1-api:1.0.2.Final'
+
+    // 3rd Party - Swagger
+    implementation 'io.springfox:springfox-swagger2:2.6.1'
+    implementation 'io.springfox:springfox-swagger-ui:2.6.1'
+
+    // 3rd Party - Etc.
+    implementation 'io.jsonwebtoken:jjwt:0.9.1'
+
+    implementation 'org.apache.commons:commons-lang3'
+    implementation 'commons-io:commons-io:2.6'
+    implementation 'org.apache.commons:commons-dbcp2:2.6.0'
+
+    implementation 'net.sf.jasperreports:jasperreports:6.8.0'
+
+    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
 }
 
 test {

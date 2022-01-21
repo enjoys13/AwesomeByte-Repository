@@ -50,19 +50,18 @@ spring:
         init:
             platform: postgres
 apps:
-    version: 1.0.0-RELEASE
+    version: 1.0.0.RELEASE
     filePathProperties:
         uploadedFileServer: /home/var/files/uploaded
         uploadedFileLocal: C:/upload
 
-#auth:
-#    #   in minutes
-#    jwtExpiration: 1000
-#    jwtSecret: JWTSuperSecretKey
-#
-#    otpExpiration: 5
-#    passwordExpiration : 129600 # 3 months
-#
+auth:
+    jwt-expiration: 120 # in minutes
+    jwt-secret: W3B0rnt0S3rVEY0uPr3D
+
+    otp-expiration: 5
+    password-expiration : 129600 # +- 3 months
+
 #connector:
 #    OtpUrl: file:C:/BNI/sms bankin wsdl/SB_SMSBanking_SMSSender_WSExport.wsdl
 #

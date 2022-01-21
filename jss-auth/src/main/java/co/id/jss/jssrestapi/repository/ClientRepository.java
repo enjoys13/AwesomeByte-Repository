@@ -10,5 +10,5 @@ import java.util.Optional;
 @Repository
 public interface ClientRepository extends JpaRepository<Client, String>, QuerydslPredicateExecutor<Client> {
 
-    Optional<Client> findOneByIdAndActive(String id, boolean isActive);
+    Optional<Client> findOneByIdAndIsActive(String id, boolean isActive);
 }
