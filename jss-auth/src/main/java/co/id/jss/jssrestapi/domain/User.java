@@ -120,7 +120,7 @@ public class User implements Serializable {
 
     @Basic
     @Column(name = "CREATED_BY")
-    private String createdBy;
+    private Long createdBy;
 
     @Basic
     @Column(name = "UPDATED_AT")
@@ -128,7 +128,7 @@ public class User implements Serializable {
 
     @Basic
     @Column(name = "UPDATED_BY")
-    private String updatedBy;
+    private Long updatedBy;
 
     @OneToMany(mappedBy = "userByUserId")
     private Collection<UserRole> userRoleById;
@@ -348,11 +348,11 @@ public class User implements Serializable {
         this.createdAt = createdAt;
     }
 
-    public String getCreatedBy() {
+    public Long getCreatedBy() {
         return createdBy;
     }
 
-    public void setCreatedBy(String createdBy) {
+    public void setCreatedBy(Long createdBy) {
         this.createdBy = createdBy;
     }
 
@@ -364,11 +364,11 @@ public class User implements Serializable {
         this.updatedAt = updatedAt;
     }
 
-    public String getUpdatedBy() {
+    public Long getUpdatedBy() {
         return updatedBy;
     }
 
-    public void setUpdatedBy(String updatedBy) {
+    public void setUpdatedBy(Long updatedBy) {
         this.updatedBy = updatedBy;
     }
 

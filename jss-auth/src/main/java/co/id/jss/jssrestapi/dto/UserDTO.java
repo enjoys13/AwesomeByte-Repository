@@ -21,9 +21,9 @@ public class UserDTO {
     private List<String> roleListName;
     private List<String> accessList;
     private String createdAt;
-    private String createdBy;
+    private Long createdBy;
     private String  updatedAt;
-    private String updatedBy;
+    private Long updatedBy;
     private String status;
     private boolean active;
     private boolean block;
@@ -157,11 +157,11 @@ public class UserDTO {
         this.createdAt = createdAt;
     }
 
-    public String getCreatedBy() {
+    public Long getCreatedBy() {
         return createdBy;
     }
 
-    public void setCreatedBy(String createdBy) {
+    public void setCreatedBy(Long createdBy) {
         this.createdBy = createdBy;
     }
 
@@ -173,11 +173,11 @@ public class UserDTO {
         this.updatedAt = updatedAt;
     }
 
-    public String getUpdatedBy() {
+    public Long getUpdatedBy() {
         return updatedBy;
     }
 
-    public void setUpdatedBy(String updatedBy) {
+    public void setUpdatedBy(Long updatedBy) {
         this.updatedBy = updatedBy;
     }
 

@@ -4,7 +4,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/auth")
-public class AppsAuthController extends AuthController {
-
+@RequestMapping("/api/user")
+public class AppUserController extends UserController {
 }

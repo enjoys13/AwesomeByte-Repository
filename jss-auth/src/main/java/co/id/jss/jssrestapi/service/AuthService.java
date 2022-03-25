@@ -26,6 +26,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -61,9 +62,9 @@ public class AuthService {
     @Transactional
     public void registerUser(RegistrationUserDTO register) throws VarException {
 
-        Optional<User> existUser = userRepository.findOneByUserloginOrPhoneNumber(register.getUserlogin(), register.getPhoneNumber());
+        List<User> existUsers = userRepository.findByUserloginOrPhoneNumber(register.getUserlogin(), register.getPhoneNumber());
 
-        userValidation.userNameOrPhoneNumberNotRegistered(existUser);
+        userValidation.userNameOrPhoneNumberNotRegistered(existUsers);
 
         userValidation.passwordStrenght(register.getUserlogin(), register.getPassword());
 
@@ -87,9 +88,9 @@ public class AuthService {
 //            newUser.setOtpCode(codeOTP);
 //            newUser.setOtpCodeExp(LocalDateTime.now().plusMinutes(authYamlConfig.getOtpExpiration()));
             newUser.setCreatedAt(LocalDateTime.now());
-            newUser.setCreatedBy(register.getUserlogin());
+            newUser.setCreatedBy(authUtils.getCurrentUserDetail().getUserId());
             newUser.setUpdatedAt(LocalDateTime.now());
-            newUser.setUpdatedBy(register.getUserlogin());
+            newUser.setUpdatedBy(authUtils.getCurrentUserDetail().getUserId());
             newUser.setBlock(Constants.DEFAULT_STATUS_FALSE); // default unblocked
             newUser.setActive(Constants.DEFAULT_STATUS_TRUE); // default not active waiting for OTP Activation
             newUser.setStatus(Constants.STATUS_ACTIVATED_COMMON);

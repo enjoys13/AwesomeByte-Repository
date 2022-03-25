@@ -137,7 +137,7 @@ public class UserService {
             user.setPasswordHist2(user.getPasswordHist1());
             user.setPasswordHist1(user.getPassword());
             user.setPassword(HashPassword.createHash(newPassword));
-            user.setUpdatedBy(request.getUserlogin());
+            user.setUpdatedBy(authUtils.getCurrentUserDetail().getUserId());
             user.setUpdatedAt(LocalDateTime.now());
 
         } catch (Exception ex) {
@@ -156,7 +156,7 @@ public class UserService {
         /* CHECK UPDATE USERNAME */
         if (commonUtils.isNotNull(request.getUsername()) && !request.getUsername().equals(existUser.getUserlogin())) {
 
-            userValidation.userNameOrPhoneNumberNotRegistered(userRepository.findOneByUserlogin(request.getUsername()));
+            userValidation.userNameNotRegistered(userRepository.findOneByUserlogin(request.getUsername()));
 
             userValidation.userNameAcceptable(request.getUsername());
         }
@@ -183,7 +183,7 @@ public class UserService {
         /* CHECK UPDATE PHONE NO */
         if(commonUtils.isNotNull(request.getPhoneNumber()) && !request.getPhoneNumber().equals(existUser.getPhoneNumber())){
 
-            userValidation.userNameOrPhoneNumberNotRegistered(userRepository.findOneByPhoneNumber(request.getPhoneNumber()));
+            userValidation.phoneNumberNotRegistered(userRepository.findOneByPhoneNumber(request.getPhoneNumber()));
 
             userValidation.phoneNumberAcceptable(request.getPhoneNumber());
         }
@@ -206,7 +206,7 @@ public class UserService {
             existUser.setAddress(commonUtils.isNull(request.getAddress()) ? existUser.getAddress() : request.getAddress());
             existUser.setEmail(commonUtils.isNull(request.getEmail()) ? existUser.getEmail() : request.getEmail());
             existUser.setUpdatedAt(LocalDateTime.now());
-            existUser.setUpdatedBy(authUtils.getCurrentUserDetail().getUserlogin());
+            existUser.setUpdatedBy(authUtils.getCurrentUserDetail().getUserId());
 
         } catch (Exception ex) {
 
@@ -224,7 +224,7 @@ public class UserService {
         /* CHECK UPDATE USERNAME */
         if (commonUtils.isNotNull(request.getUserlogin()) && !request.getUserlogin().equals(existUser.getUserlogin())) {
 
-            userValidation.userNameOrPhoneNumberNotRegistered(userRepository.findOneByUserlogin(request.getUserlogin()));
+            userValidation.userNameNotRegistered(userRepository.findOneByUserlogin(request.getUserlogin()));
 
             userValidation.userNameAcceptable(request.getUserlogin());
         }
@@ -239,7 +239,7 @@ public class UserService {
         /* CHECK UPDATE PHONE NO */
         if(commonUtils.isNotNull(request.getPhoneNumber()) && !request.getPhoneNumber().equals(existUser.getPhoneNumber())){
 
-            userValidation.userNameOrPhoneNumberNotRegistered(userRepository.findOneByPhoneNumber(request.getPhoneNumber()));
+            userValidation.phoneNumberNotRegistered(userRepository.findOneByPhoneNumber(request.getPhoneNumber()));
 
             userValidation.phoneNumberAcceptable(request.getPhoneNumber());
         }
@@ -264,7 +264,7 @@ public class UserService {
             existUser.setAddress(commonUtils.isNull(request.getAddress()) ? existUser.getAddress() : request.getAddress());
             existUser.setEmail(commonUtils.isNull(request.getEmail()) ? existUser.getEmail() : request.getEmail());
             existUser.setUpdatedAt(LocalDateTime.now());
-            existUser.setUpdatedBy(authUtils.getCurrentUserDetail().getUserlogin());
+            existUser.setUpdatedBy(authUtils.getCurrentUserDetail().getUserId());
             existUser.setActive(request.isActive());
             existUser.setBlock(request.isBlock());
 

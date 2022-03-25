@@ -32,4 +32,4 @@ public abstract class SecurityConfiguration extends WebSecurityConfigurerAdapter
         http.addFilterAfter(httpLoggingFilter(), UsernamePasswordAuthenticationFilter.class);
         http.addFilterAfter(customAuthenticationFilter(), HttpLoggingFilter.class);
     }
-}
+}       

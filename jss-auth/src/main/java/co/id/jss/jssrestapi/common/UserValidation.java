@@ -14,6 +14,7 @@ import org.springframework.stereotype.Component;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 import java.util.regex.Pattern;
 
@@ -92,8 +93,8 @@ public class UserValidation {
 
 
 
-    public void userNameOrPhoneNumberNotRegistered(Optional<User> user) throws VarException {
-        if (user.isPresent()) {
+    public void userNameOrPhoneNumberNotRegistered(List<User> users) throws VarException {
+        if (!users.isEmpty()) {
             throw new VarException(
                     HttpStatus.BAD_REQUEST,
                     Constants.ERROR_USER_OR_PHONE_ALREADY_REGISTERED);
@@ -105,6 +106,14 @@ public class UserValidation {
             throw new VarException(
                     HttpStatus.BAD_REQUEST,
                     Constants.ERROR_USER_ALREADY_REGISTERED);
+        }
+    }
+
+    public void phoneNumberNotRegistered(Optional<User> user) throws VarException {
+        if (user.isPresent()) {
+            throw new VarException(
+                    HttpStatus.BAD_REQUEST,
+                    Constants.ERROR_PHONE_NUMBER_ALREADY_REGISTERED);
         }
     }
 
